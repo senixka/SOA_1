@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+message TestMessage {
+
+    message Dict_float_t {
+        double first = 1;
+        double second = 2;
+    }
+
+    message Dict_str_t {
+        string first = 1;
+        string second = 2;
+    }
+
+    string strT = 1;
+    uint32 intT = 2;
+    double floatT = 3;
+    repeated int32 arrayIntT = 4;
+    repeated string arrayStrT = 5;
+    Dict_float_t dictFloatT = 6;
+    Dict_str_t dictStrT = 7;
+}

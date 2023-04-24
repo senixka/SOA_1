@@ -1,0 +1,99 @@
+version: '3'
+
+services:
+  test_native:
+    image: "senixka/soa_1_test_format:latest"
+    environment:
+        - MULTICAST_GROUP=${MULTICAST_GROUP}
+        - MULTICAST_PORT=${MULTICAST_PORT}
+        - REGULAR_PORT=2001
+        - FORMAT_TYPE=NATIVE
+    ports:
+      - "2001/udp"
+    networks:
+      - inner_network
+
+  test_json:
+    image: "senixka/soa_1_test_format:latest"
+    environment:
+      - MULTICAST_GROUP=${MULTICAST_GROUP}
+      - MULTICAST_PORT=${MULTICAST_PORT}
+      - REGULAR_PORT=2002
+      - FORMAT_TYPE=JSON
+    ports:
+      - "2002/udp"
+    networks:
+      - inner_network
+    
+  test_protobuf:
+    image: "senixka/soa_1_test_format:latest"
+    environment:
+        - MULTICAST_GROUP=${MULTICAST_GROUP}
+        - MULTICAST_PORT=${MULTICAST_PORT}
+        - REGULAR_PORT=2003
+        - FORMAT_TYPE=PROTOBUF
+    ports:
+      - "2003/udp"
+    networks:
+      - inner_network
+
+  test_msgpack:
+    image: "senixka/soa_1_test_format:latest"
+    environment:
+        - MULTICAST_GROUP=${MULTICAST_GROUP}
+        - MULTICAST_PORT=${MULTICAST_PORT}
+        - REGULAR_PORT=2004
+        - FORMAT_TYPE=MSGPACK
+    ports:
+      - "2004/udp"
+    networks:
+      - inner_network
+
+  test_yaml:
+    image: "senixka/soa_1_test_format:latest"
+    environment:
+        - MULTICAST_GROUP=${MULTICAST_GROUP}
+        - MULTICAST_PORT=${MULTICAST_PORT}
+        - REGULAR_PORT=2005
+        - FORMAT_TYPE=YAML
+    ports:
+      - "2005/udp"
+    networks:
+      - inner_network
+
+  test_xml:
+    image: "senixka/soa_1_test_format:latest"
+    environment:
+        - MULTICAST_GROUP=${MULTICAST_GROUP}
+        - MULTICAST_PORT=${MULTICAST_PORT}
+        - REGULAR_PORT=2006
+        - FORMAT_TYPE=XML
+    ports:
+      - "2006/udp"
+    networks:
+      - inner_network
+
+  test_avro:
+    image: "senixka/soa_1_test_format:latest"
+    environment:
+        - MULTICAST_GROUP=${MULTICAST_GROUP}
+        - MULTICAST_PORT=${MULTICAST_PORT}
+        - REGULAR_PORT=2007
+        - FORMAT_TYPE=AVRO
+    ports:
+      - "2007/udp"
+    networks:
+      - inner_network
+
+  proxy:
+    image: "senixka/soa_1_udp_proxy:latest"
+    ports:
+      - "2000:2000/udp"
+    environment:
+        - MULTICAST_GROUP=${MULTICAST_GROUP}
+        - MULTICAST_PORT=${MULTICAST_PORT}
+    networks:
+      - inner_network
+
+networks:
+  inner_network:
